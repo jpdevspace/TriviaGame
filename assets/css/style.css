@@ -1,0 +1,23 @@
+.container {
+    font-size: 18px;
+}
+#timer{
+    font-family: 'VT323', monospace;
+    text-align: center;
+    font-size: 72px;
+    width: 20%;
+    margin: 1rem auto;
+    color: #FFF;
+    border-radius: 35px;
+    box-shadow: 10px 10px 12px 0px rgba(0, 0, 0, 0.62);
+    font-weight: bold;
+    text-shadow: 4px 3px 0px #058fca;
+}
+
+li.options {
+    border-bottom: 6px solid #0027ff;
+    border-top: 6px solid #82c1f3;
+    background: #058fca;
+    border-radius: 11px !important;
+    margin-bottom: 10px;
+}

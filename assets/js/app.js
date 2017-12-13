@@ -3,14 +3,11 @@
     $(function() {
         //$('#startGame').modal('show');
         const trivia = {
-            questions: [
+            questionsArr: [
                 {
-                    question: "Who are the original members of the Spice Girl group",
-                    options: [ "Melanie Brown, Melanie Chisholm, Emma Bunton, Geri Halliwell and Victoria Adams",
-                                "Melanie Chisholm, Melanie Bunton, Emma Brown, Geri Adams and Victoria Halliwell",
-                                "Nicole Scherzinger, Carmit Bachar, Ashley Roberts, Jessica Sutta, Melody Thornton, and Kimberly Wyatt",
-                                "AJ McLean, Howie D., Nick Carter, Kevin Richardson, and Brian Littrell",],
-                    answer: "Melanie Brown, Melanie Chisholm, Emma Bunton, Geri Halliwell and Victoria Adams",
+                    question: "How many members in the Spice Girl group",
+                    options: [ 3, 1, 5, 4, 6],
+                    answer: 5,
                     imgSrc: "../imgs/spicegirls.gif"
                 },
                 {
@@ -20,7 +17,7 @@
                     imgSrc: "../imgs/nirvana.gif"
                 },
                 {
-                    question: "Who teaches Rachel and Phoebe about 'Unagi'?",
+                    question: "In the TV show Friends: Who teaches Rachel and Phoebe about 'Unagi'?",
                     options: ["Joey","Ross","Monica","Gunther",],
                     answer: "Ross",
                     imgSrc: "../imgs/ross.gif"
@@ -45,7 +42,49 @@
                     imgSrc: "../imgs/fullhouse.gif"
                 },
             ],
-        }
-    });
+            init() {
+                this.domCache();
+                this.loadQuestions();
+            },
+            domCache() {
+                this.$counter = $('#timer');
+                this.$question = $('#question');
+                this.$options = $('.list-group');
+            },
+            countdown() {
+                let time = 30; // Time available for each question
+                const countdown = () => {
+                    time--; // Decrease time by 1
+                    this.$counter.html(time);   // Display time
+                }
+                let quizzInterval = setInterval(countdown, 1000);   // Every second run countdown()
+                // Stop countdown at time = 0; or if click on submit
+                
+            },
+            loadQuestions() {
+                //this.countdown(); //Initialize counter
+                let questionCounter = 0;
+                let currentQuestion = this.questionsArr[questionCounter];
+                this.$question.html(currentQuestion.question); // Show first question
 
+                for (let i = 0; i < currentQuestion.options.length; i++) {
+                    this.$options.append(`<li class="options one list-group-item">${currentQuestion.options[i]}</li>`); // Show options
+                }
+
+            },
+            submitQuestion() {
+                
+            }
+                // If clicked submit
+                    // Evaluate IF the value of <li> == answer
+                        // correct++
+                    // Else wrong++
+                // If correct + wrong == questions.length FINISH!
+
+
+
+        }
+        trivia.init();
+    });
+    
 })(jQuery); 

@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Bootrap 4 CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
     <!-- Own CSS -->
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>TriviaGame</title>
@@ -16,21 +18,13 @@
         <div class="title">
             <h1 class="text-center display-1">How '90s are you?</h1>
         </div>
-        <div id="timer"></div>
-        <div id="bodyWrapper" class="row">
-            <div class="col-sm-6 text-center">
-                <div id="question">What is tamgochi</div>
-                <img src="" alt="Question hint" class="img-thumbnail">
-            </div>
-            <div class="col-sm-6 text-center">
-                <ul class="list-group">
-                    <li class="options one list-group-item">option 1</li>
-                    <li class="options two list-group-item">option 2</li>
-                    <li class="options three list-group-item">option 3</li>
-                    <li class="options four list-group-item">option 4</li>
-                </ul>
+        <div id="timer" class="bg-dark"></div>
+        <div id="bodyWrapper" class="d-flex justify-content-center">
+            <div class="col-6 text-center">
+                <div id="question"></div>
+                <ul class="list-group"></ul>
                 <br>
-                <button class="btn btn-outline-warning btn-lag">Send</button>
+                <button class="btn btn-outline-warning btn-lg">Send</button>
             </div>
         </div>
 

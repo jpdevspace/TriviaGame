@@ -21,3 +21,8 @@ li.options {
     border-radius: 11px !important;
     margin-bottom: 10px;
 }
+#gameOver{
+    font-family: 'VT323', monospace;
+    font-size: 72px;
+    font-weight: bold;
+}

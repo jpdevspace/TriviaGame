@@ -45,6 +45,9 @@
             questionCounter: 0,
             rightCount: 0,
             wrongCount: 0,
+            currentAnswer: "",
+            currentImg: "",
+
             init() {
                 this.domCache();
                 this.eventBinding();
@@ -56,7 +59,7 @@
                 this.$options = $('.list-group');
             },
             eventBinding() {
-                this.$options.on('click', '.options', this.submitQuestion.bind(this));
+                this.$options.on('click', '.options', this.getUserGuess.bind(this));
             },
             countdown() {
                 let time = 30; // Time available for each question
@@ -65,63 +68,64 @@
                     this.$counter.html(time);   // Display time
                 }
                 let quizzInterval = setInterval(countdown, 1000);   // Every second run countdown()
-                // Stop countdown at time = 0; or if click on submit  
+                if (time == 0) {
+                    this.wrongGuess();    // Stop countdown at time = 0; or if click on submit  
+                }
             },
             loadQuestions() {
-                //this.countdown(); //Initialize counter
-                // this.$question.html('');
-                console.log(this);
-                let currentQuestion = this.questionsArr[this.questionCounter];
-                this.$question.html(currentQuestion.question); // Show first question
+                this.countdown(); //Initialize counter
+                let currentQuestion = this.questionsArr[this.questionCounter];  // Get the current question
+                this.$question.html(currentQuestion.question); // Show that current question
 
                 for (let i = 0; i < currentQuestion.options.length; i++) {
                     this.$options.append(`<li class="options one list-group-item">${currentQuestion.options[i]}</li>`); // Show options
                 }
             },
-            submitQuestion(e) {
+            getUserGuess(e) {
                 let btnValue = ""; // Var that will hold the user's answer
                 btnValue = e.target.innerText;  // Answer from the <li> clicked by the user
                 this.checkAnswer(btnValue); 
             },
             checkAnswer(btnValue) {
-                let currentAnswer = this.questionsArr[this.questionCounter].answer; // Get the value of the right answer for the current question
-                let currentImg = this.questionsArr[this.questionCounter].imgSrc;    // Get the image path to display correct img
+                currentAnswer = this.questionsArr[this.questionCounter].answer; // Get the value of the right answer for the current question
+                currentImg = this.questionsArr[this.questionCounter].imgSrc;    // Get the image path to display correct img
                 
                 if (btnValue == currentAnswer) {    // If the user clicked the right answer
-                    this.rightAnswer(currentAnswer, currentImg);
+                    this.rightAnswer();
                 }
                 else {  // If user clicked the wrong answer
-                    this.wrongGuess(currentAnswer, currentImg);
+                    this.wrongGuess();
                 }
   
             },
-            rightAnswer(currentAnswer, currentImg) {
+            rightAnswer() {
                 this.rightCount++;  // Increase the points
-                this.$question.html(`CORRECT!<br>The correct answer was ${currentAnswer}<br><img class="img-thumbnail" src="${currentImg}">`);  // Display a message
+                this.$question.html(`<strong>CORRECT!</strong><br>The correct answer was ${this.currentAnswer}<br><img class="img-thumbnail" src="${this.currentImg}">`);  // Display a message
                 this.$options.empty();  // Get rid of the current options
                 this.questionCounter++; // Increment the questionCounter to later get the next question
                 console.log(this.rightCount);
-                setTimeout(this.loadQuestions.bind(this), 4000);    // Display message for 4 segs
-
+                if(this.wrongCount + this.rightCount == this.questionsArr.length) {
+                    this.gameOver();
+                } else {
+                    setTimeout(this.loadQuestions.bind(this), 4000);    // Display message for 4 segs
+                }
             },
-            wrongGuess(currentAnswer, currentImg) {
+            wrongGuess() {
                 this.wrongCount++;  // Increase the points
-                this.$question.html(`WRONG!<br>The correct answer was ${currentAnswer}<br><img class="img-thumbnail" src="${currentImg}">`);  // Display a message
+                this.$question.html(`<strong>WRONG!</strong><br>The correct answer was ${this.currentAnswer}<br><img class="img-thumbnail" src="${this.currentImg}">`);  // Display a message
                 this.$options.empty();  // Get rid of the current options
                 this.questionCounter++; // Increment the questionCounter to later get the next question
                 console.log(this.wrongCount);
-                setTimeout(this.loadQuestions.bind(this), 4000);    // Display message for 4 segs
+                if(this.wrongCount + this.rightCount == this.questionsArr.length) {
+                    this.gameOver();
+                } else { setTimeout(this.loadQuestions.bind(this), 4000);    // Display message for 4 segs
+                }
+            },
+            gameOver(){
+                // If all the questions have been displayed
+                this.$question.html(`<h2 id="gameOver">Game Over</h2><h4>Your score <br><strong>Right: ${this.rightCount}</strong><br><strong>Wrong: ${this.wrongCount}</strong></h4>`);
+
             }
-
-
-                // If clicked submit
-                    // Evaluate IF the value of <li> == answer
-                        // correct++
-                    // Else wrong++
-                // If correct + wrong == questions.length FINISH!
-
-
-
         }
         trivia.init();
     });

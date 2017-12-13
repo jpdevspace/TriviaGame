@@ -11,38 +11,38 @@
                                 "Nicole Scherzinger, Carmit Bachar, Ashley Roberts, Jessica Sutta, Melody Thornton, and Kimberly Wyatt",
                                 "AJ McLean, Howie D., Nick Carter, Kevin Richardson, and Brian Littrell",],
                     answer: "Melanie Brown, Melanie Chisholm, Emma Bunton, Geri Halliwell and Victoria Adams",
-                    imgSrc: "../imgs/spicegirls.jpeg"
+                    imgSrc: "../imgs/spicegirls.gif"
                 },
                 {
-                    question: "",
-                    options: ["","","","",],
-                    answer: "",
-                    imgSrc: ""
+                    question: "Who came first?",
+                    options: ["NSYNC","PSY","The Backstreet Boys","Nirvana",],
+                    answer: "Nirvana",
+                    imgSrc: "../imgs/nirvana.gif"
                 },
                 {
-                    question: "",
-                    options: ["","","","",],
-                    answer: "",
-                    imgSrc: ""
+                    question: "Who teaches Rachel and Phoebe about 'Unagi'?",
+                    options: ["Joey","Ross","Monica","Gunther",],
+                    answer: "Ross",
+                    imgSrc: "../imgs/ross.gif"
                 
                 },
                 {
-                    question: "",
-                    options: ["","","","",],
-                    answer: "",
-                    imgSrc: ""
+                    question: "Who wrote the book series Goosebumps?",
+                    options: ["George R. R. Martin","Stephen King","J.K Rowling","R.L. Stine",],
+                    answer: "R.L. Stine",
+                    imgSrc: "../imgs/goosebumps.gif"
                 },
                 {
-                    question: "",
-                    options: ["","","","",],
-                    answer: "",
-                    imgSrc: ""
+                    question: "Complete the lyric 'You are my fire. The one desire. Believe when I say. _________'",
+                    options: ["I ate your cheesecake","I want it that way","I'm running that way", "I kicked your dear friend",],
+                    answer: "I want it that way",
+                    imgSrc: "../imgs/bsb.gif"
                 },
                 {
-                    question: "",
-                    options: ["","","","",],
-                    answer: "",
-                    imgSrc: ""
+                    question: "Full House took place in which city?",
+                    options: ["Los Angeles","Chicago","New York City","San Francisco",],
+                    answer: "San Francisco",
+                    imgSrc: "../imgs/fullhouse.gif"
                 },
             ],
         }

@@ -1,5 +1,20 @@
+body {
+    background-color: #FFC107;
+}
 .container {
     font-size: 18px;
+}
+.title{
+    font-family: 'VT323', monospace;
+    width: 80%;
+    margin: 0 auto;
+    background: url('../imgs/bg02.jpg') center center no-repeat;
+    background-size: cover;
+    color: #FFF;
+    height: 200px;
+    border-radius: 0 0 50% 50%;
+    text-shadow: 1px 1px 10px #FF0000;
+    font-weight: bold;
 }
 #timer{
     font-family: 'VT323', monospace;
@@ -13,13 +28,18 @@
     font-weight: bold;
     text-shadow: 4px 3px 0px #058fca;
 }
-
+ul {
+    margin: 0 auto;
+}
 li.options {
     border-bottom: 6px solid #0027ff;
     border-top: 6px solid #82c1f3;
     background: #058fca;
     border-radius: 11px !important;
     margin-bottom: 10px;
+}
+li.options:hover {
+    background-color: #005477;
 }
 #gameOver{
     font-family: 'VT323', monospace;

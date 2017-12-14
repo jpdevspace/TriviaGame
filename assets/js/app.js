@@ -1,8 +1,6 @@
 (function($) {
     // Non-DOM-ready-required code here (scope-safe)
     $(function() {
-        //$('#startGame').modal('show');
-        // IT WORKS NOW
         const trivia = {
             questionsArr: [
                 {
@@ -17,37 +15,41 @@
                     answer: "Nirvana",
                     imgSrc: "./assets/imgs/nirvana.gif"
                 },
-                // {
-                //     question: "In the TV show Friends: Who teaches Rachel and Phoebe about 'Unagi'?",
-                //     options: ["Joey","Ross","Monica","Gunther",],
-                //     answer: "Ross",
-                //     imgSrc: "./assets/imgs/ross.gif"
+                {
+                    question: "In the TV show Friends: Who teaches Rachel and Phoebe about 'Unagi'?",
+                    options: ["Joey","Ross","Monica","Gunther",],
+                    answer: "Ross",
+                    imgSrc: "./assets/imgs/ross.gif"
                 
-                // },
-                // {
-                //     question: "Who wrote the book series Goosebumps?",
-                //     options: ["George R. R. Martin","Stephen King","J.K Rowling","R.L. Stine",],
-                //     answer: "R.L. Stine",
-                //     imgSrc: "./assets/imgs/goosebumps.gif"
-                // },
-                // {
-                //     question: "Complete the lyric 'You are my fire. The one desire. Believe when I say. _________'",
-                //     options: ["I ate your cheesecake","I want it that way","I'm running that way", "I kicked your dear friend",],
-                //     answer: "I want it that way",
-                //     imgSrc: "./assets/imgs/bsb.gif"
-                // },
-                // {
-                //     question: "Full House took place in which city?",
-                //     options: ["Los Angeles","Chicago","New York City","San Francisco",],
-                //     answer: "San Francisco",
-                //     imgSrc: "./assets/imgs/fullhouse.gif"
-                // }
+                },
+                {
+                    question: "Who wrote the book series Goosebumps?",
+                    options: ["George R. R. Martin","Stephen King","J.K Rowling","R.L. Stine",],
+                    answer: "R.L. Stine",
+                    imgSrc: "./assets/imgs/goosebumps.gif"
+                },
+                {
+                    question: "Complete the lyric 'You are my fire. The one desire. Believe when I say. _________'",
+                    options: ["I ate your cheesecake","I want it that way","I'm running that way", "I kicked your dear friend",],
+                    answer: "I want it that way",
+                    imgSrc: "./assets/imgs/bsb.gif"
+                },
+                {
+                    question: "Full House took place in which city?",
+                    options: ["Los Angeles","Chicago","New York City","San Francisco",],
+                    answer: "San Francisco",
+                    imgSrc: "./assets/imgs/fullhouse.gif"
+                }
             ],
-            qCounter: 0, // Counter for the current question
-            rightCount: 0,
-            wrongCount: 0,
-            quizzInterval: 0,
+            qCounter: 0, // Counter to track the current question
+            rightCount: 0,  // Counter to track right guesses
+            wrongCount: 0,  // Counter to track wrong guesses
+            quizzInterval: 0,   // To hold the timer
 
+            startModal() {
+                $('#startGame').modal('show');  // Open the Bootrap 4 modal on start
+                $('button#startNow').on('click', this.init.bind(this)); // Starts the game when the user clicks the start button
+            },
             init() {
                 this.domCache();
                 this.eventBinding();
@@ -63,7 +65,7 @@
                 this.$question.on('click', '.restart', this.restart.bind(this));
             },
             countdown() {
-                let time = 5; // Time available for each question
+                let time = 30; // Time available for each question
                 const countdown = () => {
                     time--; // Decrease time by 1
                     if (time == 0) {
@@ -93,19 +95,18 @@
                     this.wrongCount++;
                     this.showMessage('Incorrect!');
                 }
-                console.log(this.questionsArr.length);
+            },
+            showMessage(guess) {
+                clearInterval(this.quizzInterval); // Stop the timer
+                this.$options.empty();  // Get rid of the current options
+                this.$question.html(`<strong>${guess}</strong><br>The correct answer was ${this.questionsArr[this.qCounter].answer}<br><img class="img-thumbnail" src="${this.questionsArr[this.qCounter].imgSrc}">`);  // Display a message   
+                
                 if(this.qCounter == (this.questionsArr.length - 1)) { // Check if game over
                     this.gameOver();
                 } else {
                     this.qCounter++; // Update the question counter to move on to the next question
                     setTimeout(this.loadQuestions.bind(this), 4000);    // Display message for 4 segs
                 }
-            },
-            showMessage(guess) {
-                clearInterval(this.quizzInterval); // Stop the timer
-                this.$options.empty();  // Get rid of the current options
-                this.$question.html(`<strong>${guess}</strong><br>The correct answer was ${this.questionsArr[this.qCounter].answer}<br><img class="img-thumbnail" src="${this.questionsArr[this.qCounter].imgSrc}">`);  // Display a message   
-
             },
             gameOver(){
                 // If all the questions have been displayed
@@ -119,11 +120,14 @@
                 `);
             },
             restart(){
-                console.log("Restart");
+                this.qCounter = 0; 
+                this.rightCount = 0;
+                this.wrongCount = 0;
+                this.quizzInterval = 0;
+                this.loadQuestions();
             }
-            
         }
-        trivia.init();
+        trivia.startModal();
     });
     
 })(jQuery); 

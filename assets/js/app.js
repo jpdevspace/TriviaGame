@@ -29,13 +29,13 @@
                     imgSrc: "./assets/imgs/goosebumps.gif"
                 },
                 {
-                    question: "Complete the lyric 'You are my fire. The one desire. Believe when I say. _________'",
+                    question: 'Complete the lyric "You are my fire. The one desire. Believe, when I say. _________"',
                     options: ["I ate your cheesecake","I want it that way","I'm running that way", "I kicked your dear friend",],
                     answer: "I want it that way",
                     imgSrc: "./assets/imgs/bsb.gif"
                 },
                 {
-                    question: "Full House took place in which city?",
+                    question: "Where did the TV show Full House took place?",
                     options: ["Los Angeles","Chicago","New York City","San Francisco",],
                     answer: "San Francisco",
                     imgSrc: "./assets/imgs/fullhouse.gif"
